@@ -1,0 +1,36 @@
+source('read_data.R')
+
+png("plot3.png")
+with(
+  data,
+  plot(
+    strptime(paste(Date, Time), "%Y-%m-%d %H:%M:%S"),
+    Sub_metering_1,
+    type = 'l',
+    xlab = "",
+    ylab = 'Energy sub metering'
+  )
+)
+with(
+  data,
+  lines(
+    strptime(paste(Date, Time), "%Y-%m-%d %H:%M:%S"),
+    Sub_metering_2,
+    col = 'red'
+  )
+)
+with(
+  data,
+  lines(
+    strptime(paste(Date, Time), "%Y-%m-%d %H:%M:%S"),
+    Sub_metering_3,
+    col = 'blue'
+  )
+)
+legend(
+  "topright",
+  legend = c('Sub_metering_1', 'Sub_metering_2', 'Sub_metering_3'),
+  col = c('black', 'red', 'blue'),
+  lwd = 1
+)
+dev.off()
